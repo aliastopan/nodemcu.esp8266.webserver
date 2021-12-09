@@ -1,9 +1,16 @@
 #include <Arduino.h>
+#include "webserver.h"
 
-void setup() {
-  // put your setup code here, to run once:
+void setup()
+{
+  	Serial.begin(9600);
+  	while (!Serial);
+
+	WebServer::Setup();
+
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop()
+{
+
 }
