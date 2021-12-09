@@ -7,6 +7,7 @@ void setup()
   	while (!Serial);
 
 	WebServer::Setup();
+	WebServer::Start();
 
 }
 
