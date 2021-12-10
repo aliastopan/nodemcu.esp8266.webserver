@@ -1,7 +1,15 @@
-body {
-  font-family: "Crimson Pro", sans-serif;
+* {
+  padding: 0;
+  margin: 0;
 }
 
-h1 {
-  font-weight: 600;
-}/*# sourceMappingURL=styles.css.map */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #121314;
+  color: #f8f8f8;
+  font-size: 16px;
+}
+
+._container{
+  padding: 1rem;
+}

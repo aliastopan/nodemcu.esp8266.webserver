@@ -13,19 +13,26 @@
 // WiFi Manager Password    [ 2-4-8-16-32-64 ]
 
 const int port = 80;
-const char* ssid = "NodeMCU WiFi";
+const char* ssid = "Einharan";
 const char* password = "248163264";
 AsyncWebServer server(port);
 DNSServer dns;
 
-String header;
+const char* _ssid = "Wifi@Home";
+const char* _password = "02062000";
 
 class WebServer{
     public:
     static void Setup()
     {
-        AsyncWiFiManager authenticator(&server, &dns);
-        authenticator.autoConnect(ssid, password);
+        // AsyncWiFiManager authenticator(&server, &dns);
+        // authenticator.autoConnect(ssid, password);
+
+        WiFi.begin(_ssid, _password);
+        while (WiFi.status() != WL_CONNECTED) {
+            delay(1000);
+            Serial.println("Authenticating...");
+        }
 
         Serial.print("Authenticated: ");
         Serial.println(WiFi.localIP());
@@ -35,7 +42,7 @@ class WebServer{
     {
         if (!LittleFS.begin())
 	    {
-		    Serial.println("Failed to mount flash file system");
+		    Serial.println("failed to mount flash file system");
 		    return;
 	    }
 
@@ -43,8 +50,8 @@ class WebServer{
 		    request->send(LittleFS, "/index.html", String());
 	    });
 
-        server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest *request){
-  		    request->send(LittleFS, "/style.css","text/css");
+        server.on("/styles.css", HTTP_GET, [](AsyncWebServerRequest *request){
+  		    request->send(LittleFS, "/styles.css","text/css");
 	    });
 
         server.begin();
