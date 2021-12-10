@@ -8,6 +8,7 @@
 #include <DNSServer.h>
 #include <ESPAsyncWiFiManager.h>
 #include <ArduinoJson.h>
+#include "board.h"
 
 // WiFi Manager IP          [ 192.168.4.1 ]
 // WiFi Manager Password    [ 2-4-8-16-32-64 ]
@@ -23,16 +24,22 @@ const char* _password = "02062000";
 
 class WebServer{
     public:
-    static void Setup()
+    static void SetupAuto()
     {
-        // AsyncWiFiManager authenticator(&server, &dns);
-        // authenticator.autoConnect(ssid, password);
-
         WiFi.begin(_ssid, _password);
         while (WiFi.status() != WL_CONNECTED) {
             delay(1000);
             Serial.println("Authenticating...");
         }
+
+        Serial.print("Authenticated: ");
+        Serial.println(WiFi.localIP());
+    }
+
+    static void Setup()
+    {
+        AsyncWiFiManager authenticator(&server, &dns);
+        authenticator.autoConnect(ssid, password);
 
         Serial.print("Authenticated: ");
         Serial.println(WiFi.localIP());
