@@ -14,8 +14,25 @@
 </head>
 <body>
     <div class="_container">
-        <h2>WebServer</h2>
+        <h2>REST API</h2>
         <p>Your princess is in another castle <(")> </p>
+        <h3 id="status">%STATUS%</h3>
+
     </div>
+
+<script>
+
+    setInterval(function ( ) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+            document.getElementById("status").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "/status", true);
+    xhttp.send();
+    }, 10 ) ;
+
+</script>
 </body>
 </html>
