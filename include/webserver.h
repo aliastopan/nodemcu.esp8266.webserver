@@ -38,8 +38,14 @@ class WebServer{
 
     static void Setup()
     {
-        AsyncWiFiManager authenticator(&server, &dns);
-        authenticator.autoConnect(ssid, password);
+        // AsyncWiFiManager authenticator(&server, &dns);
+        // authenticator.autoConnect(ssid, password);
+
+        WiFi.begin(_ssid, _password);
+        while (WiFi.status() != WL_CONNECTED) {
+            delay(1000);
+            Serial.println("Authenticating...");
+        }
 
         Serial.print("Authenticated: ");
         Serial.println(WiFi.localIP());
