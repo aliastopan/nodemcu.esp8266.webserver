@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include "webserver.h"
+#include "rest.api.h"
 #include "board.h"
 
 void setup()
@@ -7,8 +7,8 @@ void setup()
   	Serial.begin(9600);
   	while (!Serial);
 
-	WebServer::SetupAuto();
-	WebServer::Start();
+	API::Setup();
+	API::Start();
 
 }
 
