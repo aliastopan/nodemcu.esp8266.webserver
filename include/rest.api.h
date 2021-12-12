@@ -24,6 +24,9 @@ class API
     public:
         static void Setup()
         {
+            // AsyncWiFiManager authenticator(&server, &dns);
+            // authenticator.autoConnect(ssid, password);
+
             WiFi.begin(_ssid, _password);
             while (WiFi.status() != WL_CONNECTED) {
                 delay(1000);
